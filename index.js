@@ -1,6 +1,10 @@
-const express = require("express");
-const cors = require("cors");
-require("dotenv").config();
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import user from './src/routes/user.route.js';  // Don't forget the ".js" extension when using import
+
+// Initialize environment variables
+dotenv.config();
 
 // Initialize Express app
 const app = express();
@@ -11,11 +15,10 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-const userPost = require("./src/routes/userPost.route");
-app.use("/userPost", userPost);
+app.use('/user', user);
 
-app.get("/", (req, res) => {
-  res.send("Server is running...");
+app.get('/', (req, res) => {
+  res.send(`🚀 Server is running on port: ${port}`);
 });
 
 // Start the server
