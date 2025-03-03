@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv"; 
 import { MongoClient, ServerApiVersion } from "mongodb";
 import userRoutes from "./src/routes/user.route.js";
+import tasksRoute from "./src/routes/tasks.route.js";
 
 // Initialize environment variables
 dotenv.config();
@@ -39,6 +40,7 @@ async function run() {
 
 
     app.use("/user", userRoutes(client));
+    app.use("/task", tasksRoute(client));
 
 
     app.get("/", (req, res) => {
